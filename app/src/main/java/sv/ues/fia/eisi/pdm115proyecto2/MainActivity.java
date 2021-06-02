@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnTextoPdf;
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
+    ControlDB helper;
 
     public static final int REQUEST_CODE = 123456;
 
@@ -36,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        helper = new ControlDB(MainActivity.this);
+        helper.llenar();
 
         btnTextoPdf =findViewById(R.id.btnTextoPDF);
 

@@ -18,11 +18,14 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class PdfActivity extends AppCompatActivity {
 
     Button btnGenerar, btnInicio;
-    EditText contentPdf;
+    EditText contentPdf, titulo;
+    ControlDB helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class PdfActivity extends AppCompatActivity {
         btnGenerar = findViewById(R.id.btnGenerar);
         btnInicio = findViewById(R.id.btnRegresar);
         contentPdf = findViewById(R.id.editTextPdfContent);
+        titulo = findViewById(R.id.editTextTituloPDF);
+        helper = new ControlDB(this);
 
         btnGenerar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,8 +53,8 @@ public class PdfActivity extends AppCompatActivity {
 
     private void createPDF(){
 
-        if(contentPdf.getText().toString().isEmpty()){
-            Toast.makeText(this, "No hay texto para generar PDF", Toast.LENGTH_SHORT).show();
+        if(contentPdf.getText().toString().isEmpty() || titulo.getText().toString().isEmpty()){
+            Toast.makeText(this, "Complete los campos del documentos", Toast.LENGTH_SHORT).show();
         }else{
 
             String contenidoPdf = contentPdf.getText().toString();
@@ -68,8 +73,20 @@ public class PdfActivity extends AppCompatActivity {
 
             // File file = new File(Environment.getExternalStorageDirectory(), "/myPdf.pdf");
 
-            File file= new File(this.getExternalFilesDir("/"), "prueba.pdf");
+            String currentDateandTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
+            File file= new File(this.getExternalFilesDir("/"), titulo.getText().toString()+currentDateandTime+".pdf");
+
+
+            String title = titulo.getText().toString();
+            String content = contentPdf.getText().toString();
+
+            Contenidos contenidos = new Contenidos();
+            contenidos.setNombre(title);
+            contenidos.setContenido(content);
+            helper.abrir();
+            helper.insertar(contenidos);
+            helper.cerrar();
 
             try {
                 myPdfDocument.writeTo(new FileOutputStream(file));
