@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "563163736451",
+    "project_id": "pdm115proyecto2",
+    "storage_bucket": "pdm115proyecto2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563163736451:android:1505bce4c564daa301aeb6",
+        "android_client_info": {
+          "package_name": "sv.ues.fia.eisi.pdm115proyecto2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563163736451-7bnflkj9r0oj5cq3dpjko6so3ocj273j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOabtjcDyafxeXHVwT2IgJtERRtL0fhUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563163736451-7bnflkj9r0oj5cq3dpjko6so3ocj273j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
