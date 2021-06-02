@@ -2,8 +2,11 @@ package sv.ues.fia.eisi.pdm115proyecto2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -17,10 +20,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button btnTextoPdf;
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
 
     public static final int REQUEST_CODE = 123456;
+
 
 
     List<AuthUI.IdpConfig> providers = Arrays.asList(
@@ -31,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btnTextoPdf =findViewById(R.id.btnTextoPDF);
+
+        btnTextoPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), PdfActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
