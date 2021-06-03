@@ -20,7 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnTextoPdf;
+    Button btnTextoPdf, buscador;
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
     ControlDB helper;
@@ -42,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
         helper.llenar();
 
         btnTextoPdf =findViewById(R.id.btnTextoPDF);
+        buscador = findViewById(R.id.btnBuscarA);
+
+        buscador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), BuscarHistorial.class);
+                startActivityForResult(intent,0);
+            }
+        });
 
         btnTextoPdf.setOnClickListener(new View.OnClickListener() {
             @Override

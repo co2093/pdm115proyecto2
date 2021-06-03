@@ -15,6 +15,9 @@ import java.util.List;
 
 public class ControlDB {
 
+    private static final String [] camposContenido = new String[] {"id, contenido, nombre"};
+
+
 
     private final Context context;
     private SQLiteDatabase db;
@@ -95,6 +98,33 @@ public class ControlDB {
     }
 
 
+    public List<Contenidos> consulta(String titulo){
+        List<Contenidos> lista = new ArrayList<>();
+
+        SQLiteDatabase db = DBHelper.getReadableDatabase();
+
+        String[] carnetd = {titulo};
+
+        Cursor cursor = db.query("contenidos", camposContenido, "nombre = ?", carnetd, null,null,null);
+
+        if(cursor.moveToFirst()){
+            do {
+                String contenido = cursor.getString(1);
+                String nombre = cursor.getString(2);
+
+                Contenidos contenidos =  new Contenidos(contenido, nombre);
+                lista.add(contenidos);
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return lista;
+
+    }
 
 
     public String llenar(){

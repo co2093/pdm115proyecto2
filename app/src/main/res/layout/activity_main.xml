@@ -19,16 +19,24 @@
         />
 
     <Button
-        android:id="@+id/btnSigOut"
-        android:text="Cerrar sesion"
+        android:id="@+id/btnBuscarA"
+        android:text="Buscador"
         android:layout_margin="25dp"
         android:textColor="#fff"
         android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="cerrarsesion"
         />
 
+    <Button
+        android:id="@+id/btnSigOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:background="@color/colorAccent"
+        android:onClick="cerrarsesion"
+        android:text="Cerrar sesion"
+        android:textColor="#fff" />
 
 
 </LinearLayout>
