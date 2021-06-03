@@ -62,29 +62,33 @@ public class BuscarHistorial extends AppCompatActivity {
         escuchar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String toSpeak = contenido.getText().toString();
+
+                if (contenido.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "No hay texto que leer", Toast.LENGTH_SHORT).show();
+                } else{
+                    String toSpeak = contenido.getText().toString();
 
                 t1 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
                     @Override
                     public void onInit(int status) {
-                        if(status == TextToSpeech.SUCCESS){
+                        if (status == TextToSpeech.SUCCESS) {
                             t1.setLanguage(new Locale("spa"));
-                          //  t1.setSpeechRate(1.0f);
+                            //  t1.setSpeechRate(1.0f);
                             t1.speak(toSpeak, TextToSpeech.QUEUE_ADD, null);
                             Toast.makeText(getApplicationContext(), "Playing", Toast.LENGTH_SHORT).show();
-                        }
-                        else if (status == TextToSpeech.LANG_NOT_SUPPORTED){
+                        } else if (status == TextToSpeech.LANG_NOT_SUPPORTED) {
                             Toast.makeText(getApplicationContext(), "No soportado", Toast.LENGTH_SHORT).show();
-                        }else if(status == TextToSpeech.LANG_MISSING_DATA){
-                            Toast.makeText(getApplicationContext(), "Descargar idioma", Toast.LENGTH_SHORT).show();
+                        } else if (status == TextToSpeech.LANG_MISSING_DATA) {
+                            Toast.makeText(getApplicationContext(), "Descargar idioma Espanol", Toast.LENGTH_SHORT).show();
 
-                        }else{
+                        } else {
                             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
 
                         }
                     }
                 });
 
+            }
             }
         });
 
