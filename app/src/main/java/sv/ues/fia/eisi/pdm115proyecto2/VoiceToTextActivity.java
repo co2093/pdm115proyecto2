@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ public class VoiceToTextActivity extends AppCompatActivity {
 
     EditText mTextTv;
     ImageButton mVoiceBtn;
+    Button regresar, generar;
     private  static final int REQUEST_CODE_SPEECH_INPUT = 1000;
 
     @Override
@@ -29,6 +32,31 @@ public class VoiceToTextActivity extends AppCompatActivity {
 
         mTextTv = findViewById(R.id.textTv);
         mVoiceBtn = findViewById(R.id.voiceBtn);
+        regresar = findViewById(R.id.inicio_voice);
+        generar = findViewById(R.id.btnGenerateFromVoice);
+
+        regresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
+        generar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (mTextTv.getText().toString().isEmpty()){
+                    Toast.makeText(VoiceToTextActivity.this, "Debe hablar para generar PDF", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(v.getContext(), PdfActivity.class);
+                    intent.putExtra("contenido", mTextTv.getText().toString());
+                    startActivityForResult(intent,0);
+                }
+
+            }
+        });
 
         mVoiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +64,6 @@ public class VoiceToTextActivity extends AppCompatActivity {
                 speak();
             }
         });
-
 
 
     }

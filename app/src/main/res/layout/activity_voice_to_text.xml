@@ -9,43 +9,58 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_height="512dp"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="50dp">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="219dp">
+
         <EditText
             android:id="@+id/textTv"
             android:layout_width="match_parent"
-            android:fontFamily="sans-serif-medium"
             android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:textColor="#000"/>
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000"
+            android:textSize="20sp" />
 
     </ScrollView>
+
+
 
     <LinearLayout
         android:id="@+id/contenedorBoton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/Snow"
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:padding="20dp">
+
         <ImageButton
             android:id="@+id/voiceBtn"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@null"
-            android:src="@drawable/ic_microfono_icon"
-            android:scaleType="fitCenter"
+            android:layout_width="132dp"
+            android:layout_height="106dp"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_microfono_icon" />
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <Button
+            android:id="@+id/btnGenerateFromVoice"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Presione para hablar" />
+            android:text="Generar PDF" />
+
+        <Button
+            android:id="@+id/inicio_voice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Regresar" />
+
     </LinearLayout>
 
 
