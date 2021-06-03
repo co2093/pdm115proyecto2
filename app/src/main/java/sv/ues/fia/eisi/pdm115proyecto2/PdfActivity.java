@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -37,6 +38,23 @@ public class PdfActivity extends AppCompatActivity {
         contentPdf = findViewById(R.id.editTextPdfContent);
         titulo = findViewById(R.id.editTextTituloPDF);
         helper = new ControlDB(this);
+
+
+        Intent i = getIntent();
+        String ttl = i.getStringExtra("titulo");
+        String ctn = i.getStringExtra("contenido");
+
+            titulo.setText(ttl);
+            contentPdf.setText(ctn);
+
+        btnInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
 
         btnGenerar.setOnClickListener(new View.OnClickListener() {
             @Override

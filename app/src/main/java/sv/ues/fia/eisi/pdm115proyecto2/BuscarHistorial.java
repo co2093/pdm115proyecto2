@@ -52,6 +52,23 @@ public class BuscarHistorial extends AppCompatActivity {
             }
         });
 
+        generar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(titulo.getText().toString().isEmpty() || contenido.getText().toString().isEmpty()){
+                    Toast.makeText(BuscarHistorial.this, "Realice una busqueda primero", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Intent intent = new Intent(v.getContext(), PdfActivity.class);
+                    intent.putExtra("titulo", titulo.getText().toString());
+                    intent.putExtra("contenido", contenido.getText().toString());
+                    startActivityForResult(intent,0);
+                }
+
+            }
+        });
+
 
 
         busqueda.setOnClickListener(new View.OnClickListener() {
