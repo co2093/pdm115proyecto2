@@ -23,6 +23,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions{
+        exclude 'com/itextpdf/io/font/cmap_info.txt'
+        exclude 'com/itextpdf/io/font/cmap/*'
+
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -38,6 +45,8 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:7.1.1'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     //implementation 'com.google.firebase:firebase-core:21.0.1'
+    implementation 'com.itextpdf:itext7-core:7.1.3'
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

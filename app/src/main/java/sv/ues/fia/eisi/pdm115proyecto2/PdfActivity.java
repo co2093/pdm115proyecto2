@@ -16,9 +16,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -59,7 +65,11 @@ public class PdfActivity extends AppCompatActivity {
         btnGenerar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPDF();
+                try {
+                    createPdf2();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -120,5 +130,48 @@ public class PdfActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void createPdf2() throws FileNotFoundException {
+
+
+        if(contentPdf.getText().toString().isEmpty() || titulo.getText().toString().isEmpty()){
+            Toast.makeText(this, "Complete los campos del documentos", Toast.LENGTH_SHORT).show();
+        }else {
+
+            String currentDateandTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String contenidoPdf = contentPdf.getText().toString();
+
+            String title = titulo.getText().toString();
+            String content = contentPdf.getText().toString();
+
+            Contenidos contenidos = new Contenidos();
+            contenidos.setNombre(title);
+            contenidos.setContenido(content);
+            helper.abrir();
+            helper.insertar(contenidos);
+            helper.cerrar();
+
+            String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+
+        //    File file = new File(pdfPath, titulo.getText().toString()+ currentDateandTime+".pdf");
+            File file= new File(this.getExternalFilesDir("/"), titulo.getText().toString()+currentDateandTime+".pdf");
+         //   OutputStream outputStream = new FileOutputStream(file);
+
+            PdfWriter pdfWriter = new PdfWriter(file);
+            com.itextpdf.kernel.pdf.PdfDocument pdfDocument;
+            pdfDocument = new com.itextpdf.kernel.pdf.PdfDocument(pdfWriter);
+            Document document = new Document(pdfDocument);
+
+            Paragraph paragraph2 = new Paragraph(title);
+            document.add(paragraph2.setBold().setFontSize(16));
+            Paragraph paragraph = new Paragraph(contenidoPdf);
+
+            document.add(paragraph.setFontSize(14));
+            document.close();
+            Toast.makeText(PdfActivity.this, "OKEY", Toast.LENGTH_SHORT).show();
+
+
+        }
     }
 }
