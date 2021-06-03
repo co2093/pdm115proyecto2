@@ -19,14 +19,17 @@ import android.widget.Toast;
 import android.view.View;
 import android.widget.ImageButton;
 import android.app.AlertDialog;
+import android.speech.tts.TextToSpeech;
 
 import java.util.List;
+import java.util.Locale;
 
 public class BuscarHistorial extends AppCompatActivity {
 
     EditText editTextBusqueda, titulo, contenido;
-    Button busqueda, generar, regresar;
+    Button busqueda, generar, regresar, escuchar;
     ControlDB helper;
+    TextToSpeech t1;
     List<Contenidos> busquedaL;
 
     @Override
@@ -40,7 +43,11 @@ public class BuscarHistorial extends AppCompatActivity {
         editTextBusqueda = findViewById(R.id.editTextBusqueda);
         titulo = findViewById(R.id.editTextTitle);
         contenido = findViewById(R.id.editTextContent);
+        escuchar = findViewById(R.id.btnEscuchar);
         helper = new ControlDB(BuscarHistorial.this);
+
+
+
 
 
 
@@ -49,6 +56,35 @@ public class BuscarHistorial extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 startActivityForResult(intent,0);
+            }
+        });
+
+        escuchar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String toSpeak = contenido.getText().toString();
+
+                t1 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if(status == TextToSpeech.SUCCESS){
+                            t1.setLanguage(new Locale("spa"));
+                          //  t1.setSpeechRate(1.0f);
+                            t1.speak(toSpeak, TextToSpeech.QUEUE_ADD, null);
+                            Toast.makeText(getApplicationContext(), "Playing", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (status == TextToSpeech.LANG_NOT_SUPPORTED){
+                            Toast.makeText(getApplicationContext(), "No soportado", Toast.LENGTH_SHORT).show();
+                        }else if(status == TextToSpeech.LANG_MISSING_DATA){
+                            Toast.makeText(getApplicationContext(), "Descargar idioma", Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+
             }
         });
 

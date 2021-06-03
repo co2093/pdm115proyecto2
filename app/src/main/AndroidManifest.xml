@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pdm115proyecto2">
-        <activity android:name=".BuscarHistorial"></activity>
+        <activity android:name=".VoiceToTextActivity"></activity>
+        <activity android:name=".PdfViewer" />
+        <activity android:name=".BuscarHistorial" />
         <activity android:name=".PdfActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnTextoPdf, buscador;
+    ImageButton btnTextoPdf, buscador, cerrar, voiceTT;
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
     ControlDB helper;
@@ -43,6 +44,23 @@ public class MainActivity extends AppCompatActivity {
 
         btnTextoPdf =findViewById(R.id.btnTextoPDF);
         buscador = findViewById(R.id.btnBuscarA);
+        cerrar = findViewById(R.id.btnSigOut);
+        voiceTT =findViewById(R.id.btnVoice);
+
+        voiceTT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), VoiceToTextActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
+        cerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cerrarsesion(v);
+            }
+        });
 
         buscador.setOnClickListener(new View.OnClickListener() {
             @Override

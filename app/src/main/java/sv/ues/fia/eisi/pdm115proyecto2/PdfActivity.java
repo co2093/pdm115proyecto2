@@ -30,7 +30,7 @@ import java.util.Date;
 
 public class PdfActivity extends AppCompatActivity {
 
-    Button btnGenerar, btnInicio;
+    Button btnGenerar, btnInicio, verPDF;
     EditText contentPdf, titulo;
     ControlDB helper;
 
@@ -41,6 +41,7 @@ public class PdfActivity extends AppCompatActivity {
 
         btnGenerar = findViewById(R.id.btnGenerar);
         btnInicio = findViewById(R.id.btnRegresar);
+        verPDF = findViewById(R.id.btnVerPDF);
         contentPdf = findViewById(R.id.editTextPdfContent);
         titulo = findViewById(R.id.editTextTituloPDF);
         helper = new ControlDB(this);
@@ -57,6 +58,14 @@ public class PdfActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
+        verPDF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), PdfViewer.class);
                 startActivityForResult(intent,0);
             }
         });
@@ -79,6 +88,7 @@ public class PdfActivity extends AppCompatActivity {
 
     }
 
+/**
     private void createPDF(){
 
         if(contentPdf.getText().toString().isEmpty() || titulo.getText().toString().isEmpty()){
@@ -128,9 +138,8 @@ public class PdfActivity extends AppCompatActivity {
 
         }
 
-
-
     }
+    **/
 
     public void createPdf2() throws FileNotFoundException {
 
@@ -169,7 +178,7 @@ public class PdfActivity extends AppCompatActivity {
 
             document.add(paragraph.setFontSize(14));
             document.close();
-            Toast.makeText(PdfActivity.this, "OKEY", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PdfActivity.this, "Documento " + title + " creado.", Toast.LENGTH_SHORT).show();
 
 
         }

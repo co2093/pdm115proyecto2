@@ -37,29 +37,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTituloPDF" />
 
+
     <Button
         android:id="@+id/btnGenerar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="44dp"
         android:text="GenerarPDF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPdfContent" />
+
 
     <Button
         android:id="@+id/btnRegresar"
         android:layout_width="136dp"
         android:layout_height="44dp"
-        android:layout_marginTop="24dp"
         android:text="Regresar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnVerPDF"
+        app:layout_constraintVertical_bias="0.28" />
+
+    <Button
+        android:id="@+id/btnVerPDF"
+        android:layout_width="136dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="60dp"
+        android:text="VER PDF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGenerar"
-        app:layout_constraintVertical_bias="0.146" />
+        app:layout_constraintVertical_bias="0.258" />
 
     <EditText
         android:id="@+id/editTextTituloPDF"
