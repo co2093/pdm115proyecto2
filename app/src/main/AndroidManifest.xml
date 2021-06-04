@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pdm115proyecto2">
-        <activity android:name=".VoiceToTextActivity"></activity>
+        <activity android:name=".TextRecognizerActivity"></activity>
+        <activity android:name=".VoiceToTextActivity" />
         <activity android:name=".PdfViewer" />
         <activity android:name=".BuscarHistorial" />
         <activity android:name=".PdfActivity" />
@@ -24,6 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Theme.Pdm115proyecto2" />
     </application>
 
 </manifest>

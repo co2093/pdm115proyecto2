@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton btnTextoPdf, buscador, cerrar, voiceTT;
+    ImageButton btnTextoPdf, buscador, cerrar, voiceTT, camera;
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
     ControlDB helper;
@@ -46,11 +46,20 @@ public class MainActivity extends AppCompatActivity {
         buscador = findViewById(R.id.btnBuscarA);
         cerrar = findViewById(R.id.btnSigOut);
         voiceTT =findViewById(R.id.btnVoice);
+        camera = findViewById(R.id.btnCamera);
 
         voiceTT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), VoiceToTextActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), TextRecognizerActivity.class);
                 startActivityForResult(intent,0);
             }
         });
