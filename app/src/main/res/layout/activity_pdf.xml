@@ -27,37 +27,16 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Escriba el contenido del documento"
+        android:hint="Contenido del documento"
         android:inputType="textMultiLine"
         android:textAlignment="gravity"
         android:textSize="12dp"
-        android:textStyle="italic"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTituloPDF" />
 
-
-    <Button
-        android:id="@+id/btnGenerar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="Generar PDF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPdfContent" />
-
-    <Button
-        android:id="@+id/btnRegresar"
-        android:layout_width="136dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="24dp"
-        android:text="Regresar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGenerar" />
 
     <EditText
         android:id="@+id/editTextTituloPDF"
@@ -70,4 +49,58 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TableLayout
+        android:layout_width="282dp"
+        android:layout_height="140dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPdfContent"
+        app:layout_constraintVertical_bias="0.551">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnGenerar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Generar PDF"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="446dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnEmail"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:text="Enviar por correo"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="446dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnAtras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Atras"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="446dp" />
+        </TableRow>
+
+
+    </TableLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

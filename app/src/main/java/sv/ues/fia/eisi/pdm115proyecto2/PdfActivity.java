@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -31,7 +32,8 @@ import java.util.Date;
 
 public class PdfActivity extends AppCompatActivity {
 
-    Button btnGenerar, btnInicio, verPDF;
+    Button btnInicio;
+    Button mail, btnGenerar;
     EditText contentPdf, titulo;
     ControlDB helper;
 
@@ -41,7 +43,8 @@ public class PdfActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pdf);
 
         btnGenerar = findViewById(R.id.btnGenerar);
-        btnInicio = findViewById(R.id.btnRegresar);
+        btnInicio = findViewById(R.id.btnAtras);
+        mail = findViewById(R.id.btnEmail);
         contentPdf = findViewById(R.id.editTextPdfContent);
         titulo = findViewById(R.id.editTextTituloPDF);
         helper = new ControlDB(this);
@@ -59,6 +62,27 @@ public class PdfActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 startActivityForResult(intent,0);
+            }
+        });
+
+        mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(contentPdf.getText().toString().isEmpty() || titulo.getText().toString().isEmpty()){
+                    Toast.makeText(PdfActivity.this, "Complete los campos del documentos", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent selectorIntent = new Intent(Intent.ACTION_SENDTO);
+                    selectorIntent.setData(Uri.parse("mailto:"));
+
+                    final Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{""});
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, titulo.getText().toString());
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, contentPdf.getText().toString());
+                    emailIntent.setSelector(selectorIntent);
+
+                    startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                }
             }
         });
 
@@ -154,11 +178,11 @@ public class PdfActivity extends AppCompatActivity {
             helper.insertar(contenidos);
             helper.cerrar();
 
-           // String pdfPath = "/storage/emulated/0/Download";
+           String pdfPath = "/storage/emulated/0/Download";
 
-           //File file = new File(pdfPath, titulo.getText().toString()+ currentDateandTime+".pdf");
+          // File file = new File(pdfPath, titulo.getText().toString()+ currentDateandTime+".pdf");
             File file= new File(this.getExternalFilesDir("/"), titulo.getText().toString()+currentDateandTime+".pdf");
-            //OutputStream outputStream = new FileOutputStream(file);
+           // OutputStream outputStream = new FileOutputStream(file);
 
             PdfWriter pdfWriter = new PdfWriter(file);
             com.itextpdf.kernel.pdf.PdfDocument pdfDocument;
