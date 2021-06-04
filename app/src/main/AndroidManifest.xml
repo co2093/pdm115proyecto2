@@ -16,7 +16,6 @@
         android:theme="@style/Theme.Pdm115proyecto2">
         <activity android:name=".TextRecognizerActivity" />
         <activity android:name=".VoiceToTextActivity" />
-        <activity android:name=".PdfViewer" />
         <activity android:name=".BuscarHistorial" />
         <activity android:name=".PdfActivity" />
         <activity android:name=".MainActivity">
