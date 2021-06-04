@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pdm115proyecto2">
-        <activity android:name=".TextRecognizerActivity"></activity>
+        <activity android:name=".TextRecognizerActivity" />
         <activity android:name=".VoiceToTextActivity" />
         <activity android:name=".PdfViewer" />
         <activity android:name=".BuscarHistorial" />

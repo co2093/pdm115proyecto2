@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton btnTextoPdf, buscador, cerrar, voiceTT, camera;
+    ImageButton btnTextoPdf, buscador, cerrar, voiceTT, camera, gallery;
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
     ControlDB helper;
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         cerrar = findViewById(R.id.btnSigOut);
         voiceTT =findViewById(R.id.btnVoice);
         camera = findViewById(R.id.btnCamera);
+      //  gallery = findViewById(R.id.btnGallery);
 
         voiceTT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent,0);
             }
         });
+
 
         camera.setOnClickListener(new View.OnClickListener() {
             @Override

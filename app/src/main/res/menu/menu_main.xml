@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
         <item
             android:id="@+id/addImage"
+            android:icon="@drawable/twotone_collections_white_48"
             android:title="Agregar una Imagen"
-            app:showAsAction="always"
-            android:icon="@drawable/common_google_signin_btn_icon_dark" />
+            app:showAsAction="always" />
 
         <item
             android:id="@+id/settings"
-            android:title="Configuracion" />
+            android:title="Ayuda" />
 
 </menu>

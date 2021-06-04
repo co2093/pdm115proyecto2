@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuInicioActivity">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="356dp"
@@ -52,24 +52,12 @@
             <ImageButton
                 android:id="@+id/btnCamera"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="125dp"
                 android:background="@color/LightYellow"
                 app:srcCompat="@drawable/round_photo_camera_black_48" />
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
 
-            android:layout_height="wrap_content">
-
-
-            <ImageButton
-                android:id="@+id/btnGallery"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/PeachPuff"
-                app:srcCompat="@drawable/round_collections_black_48" />
-        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -80,7 +68,7 @@
             <ImageButton
                 android:id="@+id/btnVoice"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="125dp"
                 android:background="@color/LightPink"
                 app:srcCompat="@drawable/round_mic_black_48" />
         </androidx.cardview.widget.CardView>
@@ -96,7 +84,7 @@
             <ImageButton
                 android:id="@+id/btnBuscarA"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="125dp"
                 android:background="@color/LightCoral"
                 app:srcCompat="@drawable/baseline_picture_as_pdf_black_48" />
         </androidx.cardview.widget.CardView>
@@ -110,7 +98,7 @@
             <ImageButton
                 android:id="@+id/btnTextoPDF"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="125dp"
                 android:background="@color/LightBlue"
                 app:srcCompat="@drawable/round_text_fields_black_48" />
         </androidx.cardview.widget.CardView>

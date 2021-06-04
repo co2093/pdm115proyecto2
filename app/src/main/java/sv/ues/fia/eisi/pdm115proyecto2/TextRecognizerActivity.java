@@ -39,6 +39,7 @@ public class TextRecognizerActivity extends AppCompatActivity {
 
     EditText mResultEt;
     ImageView mPreviewIv;
+    Button generar, atras;
 
     private static final  int CAMERA_REQUEST_CODE = 200;
     private static final  int STORAGE_REQUEST_CODE = 400;
@@ -56,16 +57,45 @@ public class TextRecognizerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_text_recognizer);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setSubtitle("Click + button to insert Image");
+        actionBar.setSubtitle("Seleccione una imagen");
 
         mResultEt = findViewById(R.id.resulttxt);
         mPreviewIv = findViewById(R.id.imageIv);
+        generar = findViewById(R.id.btnGenerarG);
+        atras = findViewById(R.id.btnAtras);
+
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
+        generar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(mResultEt.getText().toString().isEmpty() ){
+                    Toast.makeText(TextRecognizerActivity.this, "Seleccione una imagen", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Intent intent = new Intent(v.getContext(), PdfActivity.class);
+                    intent.putExtra("contenido", mResultEt.getText().toString());
+                    startActivityForResult(intent,0);
+                }
+
+            }
+        });
+
 
         //Permisos de Camara
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     }
+
+
 
     //action bar menu
     public boolean onCreateOptionsMenu(Menu menu){
