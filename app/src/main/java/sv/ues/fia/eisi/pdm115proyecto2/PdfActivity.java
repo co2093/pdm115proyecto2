@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -178,25 +179,37 @@ public class PdfActivity extends AppCompatActivity {
             helper.insertar(contenidos);
             helper.cerrar();
 
-           String pdfPath = "/storage/emulated/0/Download";
+            if (android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+                String pdfPath = "/storage/emulated/0/Download";
+                File file = new File(pdfPath, titulo.getText().toString()+ currentDateandTime+".pdf");
+                OutputStream outputStream = new FileOutputStream(file);
+                PdfWriter pdfWriter = new PdfWriter(file);
+                com.itextpdf.kernel.pdf.PdfDocument pdfDocument;
+                pdfDocument = new com.itextpdf.kernel.pdf.PdfDocument(pdfWriter);
+                Document document = new Document(pdfDocument);
 
-          // File file = new File(pdfPath, titulo.getText().toString()+ currentDateandTime+".pdf");
-            File file= new File(this.getExternalFilesDir("/"), titulo.getText().toString()+currentDateandTime+".pdf");
-           // OutputStream outputStream = new FileOutputStream(file);
+                Paragraph paragraph2 = new Paragraph(title);
+                document.add(paragraph2.setBold().setFontSize(16));
+                Paragraph paragraph = new Paragraph(contenidoPdf);
 
-            PdfWriter pdfWriter = new PdfWriter(file);
-            com.itextpdf.kernel.pdf.PdfDocument pdfDocument;
-            pdfDocument = new com.itextpdf.kernel.pdf.PdfDocument(pdfWriter);
-            Document document = new Document(pdfDocument);
+                document.add(paragraph.setFontSize(14));
+                document.close();
+                Toast.makeText(PdfActivity.this, "Documento " + title + " creado.", Toast.LENGTH_SHORT).show();
+            }else {
+                File file= new File(this.getExternalFilesDir("/"), titulo.getText().toString()+currentDateandTime+".pdf");
+                PdfWriter pdfWriter = new PdfWriter(file);
+                com.itextpdf.kernel.pdf.PdfDocument pdfDocument;
+                pdfDocument = new com.itextpdf.kernel.pdf.PdfDocument(pdfWriter);
+                Document document = new Document(pdfDocument);
 
-            Paragraph paragraph2 = new Paragraph(title);
-            document.add(paragraph2.setBold().setFontSize(16));
-            Paragraph paragraph = new Paragraph(contenidoPdf);
+                Paragraph paragraph2 = new Paragraph(title);
+                document.add(paragraph2.setBold().setFontSize(16));
+                Paragraph paragraph = new Paragraph(contenidoPdf);
 
-            document.add(paragraph.setFontSize(14));
-            document.close();
-            Toast.makeText(PdfActivity.this, "Documento " + title + " creado.", Toast.LENGTH_SHORT).show();
-
+                document.add(paragraph.setFontSize(14));
+                document.close();
+                Toast.makeText(PdfActivity.this, "Documento " + title + " creado.", Toast.LENGTH_SHORT).show();
+            }
 
         }
     }
