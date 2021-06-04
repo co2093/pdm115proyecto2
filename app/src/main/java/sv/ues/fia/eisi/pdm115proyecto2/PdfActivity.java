@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -41,7 +42,6 @@ public class PdfActivity extends AppCompatActivity {
 
         btnGenerar = findViewById(R.id.btnGenerar);
         btnInicio = findViewById(R.id.btnRegresar);
-        verPDF = findViewById(R.id.btnVerPDF);
         contentPdf = findViewById(R.id.editTextPdfContent);
         titulo = findViewById(R.id.editTextTituloPDF);
         helper = new ControlDB(this);
@@ -62,13 +62,6 @@ public class PdfActivity extends AppCompatActivity {
             }
         });
 
-        verPDF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), PdfViewer.class);
-                startActivityForResult(intent,0);
-            }
-        });
 
 
         btnGenerar.setOnClickListener(new View.OnClickListener() {
@@ -161,11 +154,11 @@ public class PdfActivity extends AppCompatActivity {
             helper.insertar(contenidos);
             helper.cerrar();
 
-            String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+           // String pdfPath = "/storage/emulated/0/Download";
 
-        //    File file = new File(pdfPath, titulo.getText().toString()+ currentDateandTime+".pdf");
+           //File file = new File(pdfPath, titulo.getText().toString()+ currentDateandTime+".pdf");
             File file= new File(this.getExternalFilesDir("/"), titulo.getText().toString()+currentDateandTime+".pdf");
-         //   OutputStream outputStream = new FileOutputStream(file);
+            //OutputStream outputStream = new FileOutputStream(file);
 
             PdfWriter pdfWriter = new PdfWriter(file);
             com.itextpdf.kernel.pdf.PdfDocument pdfDocument;
