@@ -27,7 +27,7 @@ import java.util.Locale;
 public class BuscarHistorial extends AppCompatActivity {
 
     EditText editTextBusqueda, titulo, contenido;
-    Button busqueda, generar, regresar, escuchar;
+    Button busqueda, generar, regresar, escuchar, btnDetener;
     ControlDB helper;
     TextToSpeech t1;
     List<Contenidos> busquedaL;
@@ -45,9 +45,18 @@ public class BuscarHistorial extends AppCompatActivity {
         contenido = findViewById(R.id.editTextContent);
         escuchar = findViewById(R.id.btnEscuchar);
         helper = new ControlDB(BuscarHistorial.this);
+        btnDetener = findViewById(R.id.btnDetener);
 
 
+        btnDetener.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                onStop();
+
+            }
+        });
 
 
 
@@ -135,6 +144,16 @@ public class BuscarHistorial extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+
+        if(t1 != null){
+            t1.shutdown();
+        }
     }
 
 

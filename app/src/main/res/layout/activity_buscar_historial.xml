@@ -52,7 +52,7 @@
         <EditText
             android:id="@+id/editTextContent"
             android:layout_width="match_parent"
-            android:layout_height="314dp"
+            android:layout_height="269dp"
             android:ems="10"
             android:enabled="false"
             android:inputType="textMultiLine" />
@@ -68,6 +68,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Escuchar" />
+        <Button
+            android:id="@+id/btnDetener"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detener" />
 
 
         <Button
